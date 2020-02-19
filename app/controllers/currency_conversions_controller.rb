@@ -1,4 +1,6 @@
 class CurrencyConversionsController < ApplicationController
+  before_action :currency_params, only: [:get_currency_history]
+
   def index
     respond_to do |format|
       format.html
@@ -7,8 +9,14 @@ class CurrencyConversionsController < ApplicationController
   end
 
   def get_currency_history
-    conversion_rate = ConversionRate.new(params) if params[:currency].present?
+    conversion_rate = ConversionRate.new(@params) if @params[:currency].present?
     get_conversion_rate = conversion_rate.get_conversion_rate if conversion_rate.present?
     render :json => get_conversion_rate
+  end
+
+  private
+
+  def currency_params
+    @params = params.permit(:currency, :start_date, :end_date)
   end
 end

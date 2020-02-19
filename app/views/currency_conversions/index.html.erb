@@ -13,31 +13,81 @@
 </head>
 <body style="background-color:lavender;">
 
+
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.css" rel="stylesheet" type="text/css">
+
+
 <div class="container-fluid">
-  <strong><h2 class="text-center">Want to see histories of currencies</h2></strong>
-  <div class="row">
-    <strong><h4 class="text-center">select the base currency and choose the time duration</h4></strong>
-  </div>s
-  <div class="row">
-    <div class="col-sm-4">
-      <!--      :controller => "forward_picture", :action => "create"-->
-      <%#= form_tag "#{currency_conversions_history_path}", remote: true do %>
-        <%= select_tag(:base_currency, options_for_select([["USD"], ["EUR"]], params[:base_currency]), class: "select") %>
-        <span>Select Currency</span>
-        </div>
-        <div class="col-sm-4">Start Date:
-          <%= date_field(nil, "start_date") %>
-        </div>
-        <div class="col-sm-4">End Date:
-          <%= date_field(nil, "end_date") %>
-          <button data-url="<%= currency_conversions_history_path %>" id="submit-search-btn">Search</button>
-      <%# end %>
-        </div>
-      </div>
+  <h2 class="text-center heading">History of Currencies</h2>
+  <div class="row text-center">
+    <span>Select the base currency and choose the time duration</span>
+  </div>
+  <div class="row selection-area justify-content-center">
+    <div class="col-sm-3 col-sm-offset-1 each-box select-dropdown">
+      <span>Select Currency :</span>
+      <select name="base_currency" id="base_currency" class="select">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+    </div>
+
+    <div class="col-sm-3 each-box">Start Date:
+      <input type="date" name="[start_date]" id="_start_date">
+    </div>
+    <div class="col-sm-3 each-box">End Date:
+      <input type="date" name="[end_date]" id="_end_date">
+    </div>
+    <div class="col-sm-2 each-box text-center">
+      <button class="search-button success" data-url="/currency_conversions_history" id="submit-search-btn">Search</button>
+    </div>
+  </div>
   <div class="row">
     <div id="chart"></div>
   </div>
 </div>
 
+
+<span id="sprout-social-hover-btn" class="sprout-social-share-medium" style="display: none; width: 60px; height: 25px; background-size: 60px 25px;"><img id="sprout-social-share-img" src="chrome-extension://biailfjhlmalakjackgpekkbmljelldc/svg/sprout-social-logo-icon.svg">
+        <div>Share</div>
+    </span>
 </body>
+
+
 </html>
+
+<!--<div class="container-fluid">-->
+<!--  <strong><h2 class="text-center">Want to see histories of currencies</h2></strong>-->
+<!--  <div class="row">-->
+<!--    <strong><h4 class="text-center">select the base currency and choose the time duration</h4></strong>-->
+<!--  </div>s-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-4">-->
+<!--      -->
+<%#= form_tag "#{currency_conversions_history_path}", remote: true do %>
+<%#= select_tag(:base_currency, options_for_select([["USD"], ["EUR"]], params[:base_currency]), class: "select") %>
+<!--        <span>Select Currency</span>-->
+<!--        </div>-->
+<!--        <div class="col-sm-4">Start Date:-->
+<%#= date_field(nil, "start_date") %>
+<!--        </div>-->
+<!--        <div class="col-sm-4">End Date:-->
+<%#= date_field(nil, "end_date") %>
+<!--          <button data-url="<%#= currency_conversions_history_path %>" id="submit-search-btn">Search</button>-->
+<%# end %>
+<!--        </div>-->
+<!--      </div>-->
+<!--  <div class="row">-->
+<!--    <div id="chart"></div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
