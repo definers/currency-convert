@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CurrencyConvert</title>
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="/path/to/c3.css" rel="stylesheet">
+
+  <!-- Load d3.js and c3.js -->
+  <script src="/path/to/d3.v5.min.js" charset="utf-8"></script>
+  <script src="/path/to/c3.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
