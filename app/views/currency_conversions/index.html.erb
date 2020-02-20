@@ -26,65 +26,30 @@
 
 
 <div class="container-fluid">
-  <h2 class="text-center heading">History of Currencies</h2>
-  <div class="row text-center">
+  <h2 class="text-center heading text-primary">History of Currencies</h2>
+  <div class="row text-center text-primary">
     <span>Select the base currency and choose the time duration</span>
   </div>
   <div class="row selection-area justify-content-center">
     <div class="col-sm-3 col-sm-offset-1 each-box select-dropdown">
-      <span>Select Currency :</span>
-      <%= select_tag(:base_currency, options_for_select(CurrencyConversionsController::ALL_CURRENCIES, params[:base_currency]), class: "select") %>
+      <span class="text-primary">Select Currency :</span>
+      <%= select_tag(:base_currency, options_for_select(CurrencyConversionsController::ALL_CURRENCIES, params[:base_currency]), class: "select btn btn-primary dropdown-toggle") %>
     </div>
 
-    <div class="col-sm-3 each-box">Start Date:
-      <input type="date" name="[start_date]" id="_start_date">
+    <div class="col-sm-3 each-box text-primary">Start Date:
+      <input type="date" name="[start_date]" id="start_date">
+      <span class="start_date_err text-danger hidden" role="alert" ><strong>please select smaller than end date</strong></span>
     </div>
-    <div class="col-sm-3 each-box">End Date:
-      <input type="date" name="[end_date]" id="_end_date">
+    <div class="col-sm-3 each-box text-primary">End Date:
+      <input type="date" name="[end_date]" id="end_date">
     </div>
     <div class="col-sm-2 each-box text-center">
-      <button class="search-button success" onclick="calculateDates()" data-url="/currency_conversions_history" id="submit-search-btn">Search</button>
+      <button class="search-button disable_custom success text-primary" onclick="calculateDates()" data-url="/currency_conversions_history" id="submit-search-btn">Search</button>
     </div>
   </div>
   <div class="row">
     <div id="chart"></div>
   </div>
 </div>
-
-
-<span id="sprout-social-hover-btn" class="sprout-social-share-medium" style="display: none; width: 60px; height: 25px; background-size: 60px 25px;"><img id="sprout-social-share-img" src="chrome-extension://biailfjhlmalakjackgpekkbmljelldc/svg/sprout-social-logo-icon.svg">
-        <div>Share</div>
-    </span>
 </body>
-
-
 </html>
-
-<!--<div class="container-fluid">-->
-<!--  <strong><h2 class="text-center">Want to see histories of currencies</h2></strong>-->
-<!--  <div class="row">-->
-<!--    <strong><h4 class="text-center">select the base currency and choose the time duration</h4></strong>-->
-<!--  </div>s-->
-<!--  <div class="row">-->
-<!--    <div class="col-sm-4">-->
-<!--      -->
-<%#= form_tag "#{currency_conversions_history_path}", remote: true do %>
-<%#= select_tag(:base_currency, options_for_select([["USD"], ["EUR"]], params[:base_currency]), class: "select") %>
-<!--        <span>Select Currency</span>-->
-<!--        </div>-->
-<!--        <div class="col-sm-4">Start Date:-->
-<%#= date_field(nil, "start_date") %>
-<!--        </div>-->
-<!--        <div class="col-sm-4">End Date:-->
-<%#= date_field(nil, "end_date") %>
-<!--          <button data-url="<%#= currency_conversions_history_path %>" id="submit-search-btn">Search</button>-->
-<%# end %>
-<!--        </div>-->
-<!--      </div>-->
-<!--  <div class="row">-->
-<!--    <div id="chart"></div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--</body>-->
-<!--</html>-->

@@ -60,7 +60,7 @@ var loadData = function(data, url){
                     }
                 });
             }else{
-                $('#chart').html("<p> Something Went Wrong");
+                $('#chart').html("<p id='fail_call' class='alert alert-danger'> Something Went Wrong");
             }
         },
         failure: function(result){
@@ -68,13 +68,25 @@ var loadData = function(data, url){
         }
     });
 };
-// fetch data on page load
+// fetch data on button click
 function calculateDates () {
     var url = event.target.dataset.url;
     var currency = $('#base_currency').val()
-    var startDate = $('#_start_date').val();
-    var endDate = $('#_end_date').val();
+    var startDate = $('#start_date').val();
+    var endDate = $('#end_date').val();
     var data = {currency: currency, start_date: startDate, end_date: endDate};
     loadData(data, url);
 }
+$(document).on('input', '#start_date, #end_date', function () {
+    var startDate = $('#start_date').val();
+    var endDate = $('#end_date').val();
+    if (startDate && endDate && startDate <= endDate){
+        $('#submit-search-btn').removeClass('disable_custom');
+        $('.start_date_err').addClass('hidden');
+    }
+    if(startDate && endDate && startDate > endDate){
+        $('.start_date_err').removeClass('hidden');
+        $('#submit-search-btn').addClass('disable_custom');
+    }
+});
 

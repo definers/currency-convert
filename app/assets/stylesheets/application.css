@@ -70,3 +70,15 @@ input {
     width: 40%;
     height: 30px;
 }
+#fail_call{
+    font-size: 25px;
+    color: red;
+    text-align: center;
+    margin-top: 54px;
+}
+.disable_custom{
+    pointer-events: none;
+}
+.start_date_err{
+    padding-left: 26px;
+}
