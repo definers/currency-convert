@@ -33,10 +33,7 @@
   <div class="row selection-area justify-content-center">
     <div class="col-sm-3 col-sm-offset-1 each-box select-dropdown">
       <span>Select Currency :</span>
-      <select name="base_currency" id="base_currency" class="select">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-      </select>
+      <%= select_tag(:base_currency, options_for_select(CurrencyConversionsController::ALL_CURRENCIES, params[:base_currency]), class: "select") %>
     </div>
 
     <div class="col-sm-3 each-box">Start Date:

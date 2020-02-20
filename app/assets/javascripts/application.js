@@ -51,6 +51,9 @@ var loadData = function(data, url){
                         tick: {
                             format: '%Y-%m-%d'
                         }
+                    },
+                    y: {
+                        tick: 3,
                     }
                 }
             });
