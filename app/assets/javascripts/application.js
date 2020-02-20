@@ -16,9 +16,10 @@
 //= require turbolinks
 //= require c3
 //= require d3
+//= require currency_conversions
 //= require_tree
 
-// ajax call to fetch json
+// ajax call to fetch json data and draw charts
 var loadData = function(data, url){
     $.ajax({
         type: 'GET',
@@ -27,56 +28,53 @@ var loadData = function(data, url){
         dataType: 'json',
         data: data,
         success: function(data){
-            var dateArray = Object.keys(data);
-            var xAxis = ['x'].concat(dateArray);
-            var currencies = Object.keys(data[Object.keys(data)[0]]);
-            var conversioRateArr = [xAxis];
-            for (var j = 0; j < currencies.length; j++){
-                var innerArray = [currencies[j]];
-                for (var i = 0; i < dateArray.length; i++){
-                    innerArray.push(data[dateArray[i]][currencies[j]]);
-                }
-                conversioRateArr.push(innerArray);
-            }
-            var chart = c3.generate({
-                bindto: '#chart',
-                data: {
-                    x: 'x',
-                    columns:
-                        conversioRateArr
-                },
-                axis: {
-                    x: {
-                        type: 'timeseries',
-                        tick: {
-                            format: '%Y-%m-%d'
-                        }
-                    },
-                    y: {
-                        tick: 3,
+            if( data != null){
+                var dateArray = Object.keys(data);
+                var xAxis = ['x'].concat(dateArray);
+                var currencies = Object.keys(data[Object.keys(data)[0]]);
+                var conversioRateArr = [xAxis];
+                for (var j = 0; j < currencies.length; j++){
+                    var innerArray = [currencies[j]];
+                    for (var i = 0; i < dateArray.length; i++){
+                        innerArray.push(data[dateArray[i]][currencies[j]]);
                     }
+                    conversioRateArr.push(innerArray);
                 }
-            });
+                var chart = c3.generate({
+                    bindto: '#chart',
+                    data: {
+                        x: 'x',
+                        columns:
+                        conversioRateArr
+                    },
+                    axis: {
+                        x: {
+                            type: 'timeseries',
+                            tick: {
+                                format: '%Y-%m-%d'
+                            }
+                        },
+                        y: {
+                            tick: 3,
+                        }
+                    }
+                });
+            }else{
+                $('#chart').html("<p> Something Went Wrong");
+            }
         },
         failure: function(result){
             error();
         }
     });
 };
-
-function error() {
-    console.log("Something went wrong!");
-}
-
-// draw bar plot
-function drawBarPlot(data){};
-
 // fetch data on page load
-$(document).on('click', '#submit-search-btn', function () {
-    var url = $(this).attr('data-url');
+function calculateDates () {
+    var url = event.target.dataset.url;
     var currency = $('#base_currency').val()
     var startDate = $('#_start_date').val();
     var endDate = $('#_end_date').val();
     var data = {currency: currency, start_date: startDate, end_date: endDate};
     loadData(data, url);
-});
+}
+
