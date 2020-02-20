@@ -27,22 +27,33 @@ var loadData = function(data, url){
         dataType: 'json',
         data: data,
         success: function(data){
-            debugger
-            // drawBarPlot(data);
+            var dateArray = Object.keys(data);
+            var xAxis = ['x'].concat(dateArray);
+            var currencies = Object.keys(data[Object.keys(data)[0]]);
+            var conversioRateArr = [xAxis];
+            for (var j = 0; j < currencies.length; j++){
+                var innerArray = [currencies[j]];
+                for (var i = 0; i < dateArray.length; i++){
+                    innerArray.push(data[dateArray[i]][currencies[j]]);
+                }
+                conversioRateArr.push(innerArray);
+            }
             var chart = c3.generate({
                 bindto: '#chart',
                 data: {
-                    columns: [
-                        ['data1', 30, 200, 100, 400, 150, 250],
-                        ['data2', 50, 20, 10, 40, 15, 25, 20, 10, 40, 15],
-                        ['data3', 50, 20, 10, 40, 15, 25,  20, 10, 40, 15],
-                        ['data4', 50, 20, 10, 20, 10, 40, 15, 40, 15, 25, ],
-                        ['data5',  20, 10, 40, 15,50, 20, 10, 40, 15, 25],
-                        ['data6',  20, 10, 40, 15,50, 20, 10, 40, 15, 25,6,7,12,23,45]
-                    ]
+                    x: 'x',
+                    columns:
+                        conversioRateArr
+                },
+                axis: {
+                    x: {
+                        type: 'timeseries',
+                        tick: {
+                            format: '%Y-%m-%d'
+                        }
+                    }
                 }
             });
-            console.log(data);
         },
         failure: function(result){
             error();
