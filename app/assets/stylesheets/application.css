@@ -82,3 +82,6 @@ input {
 .start_date_err, .start_date_not_selected, .end_date_err{
     padding-left: 65px;
 }
+#chart{
+    margin-top: 5%;
+}

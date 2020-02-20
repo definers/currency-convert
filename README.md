@@ -17,15 +17,46 @@ Project is created with:
 To run this project, install it locally using npm:
 
 ```
-$ clone the github repo 
-$ cd currency-convert
-$ bundle install
-If above steps fails try to install rvm from
- "https://rvm.io/"
-and then retry bundle install
-$ rails s (to run rails server)
+$ git clone https://github.com/definers/currency-convert.git
 
-To check specs for rspec 
+$ cd currency-convert
+
+$ gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+$ curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+$ source /home/username/.rvm/scripts/rvm
+
+$ bundle install
+
+$ rails s
+
+hit localhost:3000 in your web browser.
+```
+## Nokigiri Error Fix
+ERROR : An error occurred while installing nokogiri (1.10.8), and Bundler
+        cannot continue.
+````
+$ gem install nokogiri -v '1.10.8'
+
+$ bundle install
+
+still facing some error then follow below steps
+
+$ gem uninstall bundler
+
+$ gem install bundler -v 1.17.3
+
+$ bundle _1.17.3_ install 
+
+$ rails s
+
+Solved!!
+````
+
+
+##To Run Test Cases
+```` 
 $ rails generate rspec:install
 $ rspec spec/controller/currency_conversion_rates.rb
-```
+````
