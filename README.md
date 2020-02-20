@@ -1,21 +1,19 @@
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-## General info
-This project is currency conversion rates for a particular currency with all other available currency for the desired period.
 
+## Currency Conversion Rates
 
+currency-convert rates for a particular currency with all other available currency for the desired period.
+
+## Description
+A visitor can view the currency conversion rate for the desired period for a particular currency. ex: User wants to know what are the currency conversion rates of USD to different currencies for 1st January 2019 to 31st January 2019.
 ## Technologies
-Project is created with:
+
 * Ruby version 2.6.3
 * Rails Version 4.2.10
 * C3 Js Library (For charts)
 * D3 Js Library (C3 internally uses it)
+*  exchangeratesapi Public APIs used to get the currency conversion rates
 
 ## Setup
-To run this project, install it locally using npm:
-
 ```
 $ git clone https://github.com/definers/currency-convert.git
 
@@ -55,7 +53,7 @@ Solved!!
 ````
 
 
-##To Run Test Cases
+## To Run Test Cases
 ```` 
 $ rails generate rspec:install
 $ rspec spec/controller/currency_conversion_rates.rb

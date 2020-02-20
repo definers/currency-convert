@@ -19,7 +19,7 @@
 //= require currency_conversions
 //= require_tree
 
-// ajax call to fetch data from exchangeratesapi and draw charts with c3
+// Ajax call to fetch data from exchangeratesapi and draw charts with c3
 var loadData = function (data, url) {
     $.ajax({
         type: 'GET',
@@ -44,7 +44,7 @@ var loadData = function (data, url) {
     });
 };
 
-//Utility function to get conversion rate for each currency on different dates
+// Utility function to get conversion rate for each currency on different dates
 // It returns Array of Object [['date1', 'date2', 'date3'], ['USD', '1.22', '2.33', 1.1], ['CAD', 2.9, 3.11, 4.01]]
 function getCurrencyRates(data) {
     var dateArray = Object.keys(data);
@@ -127,7 +127,7 @@ function drawChartForAllCurrency(conversionRateArr, currency) {
     });
 }
 
-// make ajax call on  search  button click
+// Make ajax call on  search  button click
 function calculateDates() {
     var url = event.target.dataset.url;
     var currency = $('#base_currency').val()
@@ -137,7 +137,7 @@ function calculateDates() {
     loadData(data, url);
 }
 
-//Input validation before ajax call
+// Input validation before ajax call
 $(document).on('input', '#start_date, #end_date', function () {
     var startDate = $('#start_date').val();
     var endDate = $('#end_date').val();

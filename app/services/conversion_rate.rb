@@ -1,6 +1,6 @@
-require 'net/http'
 require 'json'
-#Service to make a http request to exchangeratesapi and get the json object
+require 'net/http'
+# Service to make a http request to exchangeratesapi and get the json object
 class ConversionRate
   def initialize (params)
     @currency = params[:currency]
@@ -19,10 +19,10 @@ class ConversionRate
     end
     response_obj['rates']
   end
-  #method to get the supported latest currencies by exchangerateapis
+
+  # Method to get the supported latest currencies by exchangerateapis
   def self.get_all_supported_currencies
-    url = "https://api.exchangeratesapi.io/latest"
-    url = URI(url)
+    url = URI("https://api.exchangeratesapi.io/latest")
     response = Net::HTTP.get(url)
     response_obj = JSON.parse(response)
     response_obj["rates"].keys
