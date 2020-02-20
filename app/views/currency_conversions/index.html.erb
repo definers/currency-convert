@@ -11,7 +11,7 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.js"></script>
   <link href="//cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.css" rel="stylesheet" type="text/css">
 </head>
-<body style="background-color:lavender;">
+<body cz-shortcut-listen="true" style="background-color: #F3F2EE; padding: 2em;">
 
 
 <title>Currency Conversion Rate</title>
@@ -38,16 +38,18 @@
 
     <div class="col-sm-3 each-box text-primary">Start Date:
       <input type="date" name="[start_date]" id="start_date">
-      <span class="start_date_err text-danger hidden" role="alert" ><strong>please select smaller than end date</strong></span>
+      <span class="start_date_not_selected text-danger hidden" role="alert" ><strong>Please select start date</strong></span>
+      <span class="start_date_err text-danger hidden" role="alert" ><strong> Select smaller than end date</strong></span>
     </div>
     <div class="col-sm-3 each-box text-primary">End Date:
       <input type="date" name="[end_date]" id="end_date">
+      <span class="end_date_err text-danger hidden" role="alert" ><strong>Please select end date</strong></span>
     </div>
     <div class="col-sm-2 each-box text-center">
       <button class="search-button disable_custom success text-primary" onclick="calculateDates()" data-url="/currency_conversions_history" id="submit-search-btn">Search</button>
     </div>
   </div>
-  <div class="row">
+  <div class="row" id="charts_div">
     <div id="chart"></div>
   </div>
 </div>
