@@ -1,0 +1,72 @@
+
+// ajax call to fetch json data and draw charts
+var loadData = function(data, url){
+    $.ajax({
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        url: url,
+        dataType: 'json',
+        data: data,
+        success: function(data){
+            if( data != null){
+                var dateArray = Object.keys(data);
+                var xAxis = ['x'].concat(dateArray);
+                var currencies = Object.keys(data[Object.keys(data)[0]]);
+                var conversioRateArr = [xAxis];
+                for (var j = 0; j < currencies.length; j++){
+                    var innerArray = [currencies[j]];
+                    for (var i = 0; i < dateArray.length; i++){
+                        innerArray.push(data[dateArray[i]][currencies[j]]);
+                    }
+                    conversioRateArr.push(innerArray);
+                }
+                var chart = c3.generate({
+                    bindto: '#chart',
+                    data: {
+                        x: 'x',
+                        columns:
+                        conversioRateArr
+                    },
+                    axis: {
+                        x: {
+                            type: 'timeseries',
+                            tick: {
+                                format: '%Y-%m-%d'
+                            }
+                        },
+                        y: {
+                            tick: 3,
+                        }
+                    }
+                });
+            }else{
+                $('#chart').html("<p id='fail_call' class='alert alert-danger'> Something Went Wrong");
+            }
+        },
+        failure: function(result){
+            error();
+        }
+    });
+};
+// fetch data on button click
+function calculateDates () {
+    var url = event.target.dataset.url;
+    var currency = $('#base_currency').val()
+    var startDate = $('#start_date').val();
+    var endDate = $('#end_date').val();
+    var data = {currency: currency, start_date: startDate, end_date: endDate};
+    loadData(data, url);
+}
+$(document).on('input', '#start_date, #end_date', function () {
+    var startDate = $('#start_date').val();
+    var endDate = $('#end_date').val();
+    if (startDate && endDate && startDate <= endDate){
+        $('#submit-search-btn').removeClass('disable_custom');
+        $('.start_date_err').addClass('hidden');
+    }
+    if(startDate && endDate && startDate > endDate){
+        $('.start_date_err').removeClass('hidden');
+        $('#submit-search-btn').addClass('disable_custom');
+    }
+});
+
