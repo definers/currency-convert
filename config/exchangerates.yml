@@ -1,0 +1,2 @@
+development: &defaults
+  public_url: "https://api.exchangeratesapi.io"

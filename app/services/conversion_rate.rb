@@ -6,7 +6,7 @@ class ConversionRate
     @currency = params[:currency]
     @start_date = params[:start_date]
     @end_date = params[:end_date]
-    @url = "https://api.exchangeratesapi.io/history?start_at=#{@start_date}&end_at=#{@end_date}&base=#{@currency}"
+    @url = "#{Rails.configuration.exchangerates_api}/history?start_at=#{@start_date}&end_at=#{@end_date}&base=#{@currency}"
     @uri = URI(@url)
   end
 
@@ -22,7 +22,7 @@ class ConversionRate
 
   # Method to get the supported latest currencies by exchangerateapis
   def self.get_all_supported_currencies
-    url = URI("https://api.exchangeratesapi.io/latest")
+    url = URI("#{Rails.configuration.exchangerates_api}/latest")
     response = Net::HTTP.get(url)
     response_obj = JSON.parse(response)
     response_obj["rates"].keys
