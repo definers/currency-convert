@@ -5,6 +5,11 @@ currency-convert rates for a particular currency with all other available curren
 
 ## Description
 A visitor can view the currency conversion rate for the desired period for a particular currency. ex: User wants to know what are the currency conversion rates of USD to different currencies for 1st January 2019 to 31st January 2019.
+
+User Can view the currency conversion rates graph of a particular currency vs all other currency to see the fluctuation very clearly and can also zoom in zoom out for more closure look.
+
+User can view currency conversion rates graph of a particular currency vs individual currency for the desired time period.
+
 ## Technologies
 
 * Ruby version 2.6.3
